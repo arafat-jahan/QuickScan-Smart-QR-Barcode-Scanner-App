@@ -29,17 +29,18 @@
 
 ## 📷 Screenshots
 
-![Home Page](screenshots/https://i.imgur.com/Q9INFBD.jpeg "Home Page: Navigate to Scan or History")  
+![Home Page](https://i.imgur.com/Q9INFBD.jpeg)
 *Home Page: Navigate to Scan or History*
 
-![Scanner Page](screenshots/scanner_page.jpeg "Scanner Page with Animated Detection Overlay")  
+![Scanner Page](https://i.imgur.com/a870ac0e-c329-4dd1-b83a-db34f35467aa.jpeg)
 *Scanner Page: ScannerFrame overlay guides scanning*
 
-![History Page](screenshots/history_page.jpeg "History Page with Interactive Scan Cards")  
+![History Page](https://i.imgur.com/291f91d5-f964-4fb0-aef3-4bd209139b09.jpeg)
 *History Page: Slidable actions, copy, share, delete*
 
-![Camera Permission](screenshots/cam_access.jpeg "Camera Permission Prompt Before Scanning")  
+![Camera Permission](https://i.imgur.com/a870ac0e-c329-4dd1-b83a-db34f35467aa.jpeg)
 *Camera Permission Prompt: Allows access before scanning*
+
 
 
 
