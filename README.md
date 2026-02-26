@@ -27,4 +27,19 @@
 - `intl` – Timestamp formatting
 
 
+## 📷 Screenshots
+
+![Home Page](screenshots/https://i.imgur.com/Q9INFBD.jpeg "Home Page: Navigate to Scan or History")  
+*Home Page: Navigate to Scan or History*
+
+![Scanner Page](screenshots/scanner_page.jpeg "Scanner Page with Animated Detection Overlay")  
+*Scanner Page: ScannerFrame overlay guides scanning*
+
+![History Page](screenshots/history_page.jpeg "History Page with Interactive Scan Cards")  
+*History Page: Slidable actions, copy, share, delete*
+
+![Camera Permission](screenshots/cam_access.jpeg "Camera Permission Prompt Before Scanning")  
+*Camera Permission Prompt: Allows access before scanning*
+
+
 
