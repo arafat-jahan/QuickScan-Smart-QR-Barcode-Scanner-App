@@ -5,7 +5,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive/hive.dart';
 
 import '../models/scan_model.dart';
-import '../widgets/scan_overlay.dart';
 
 class ScannerPage extends StatefulWidget {
   const ScannerPage({super.key});
@@ -14,10 +13,10 @@ class ScannerPage extends StatefulWidget {
   State<ScannerPage> createState() => _ScannerPageState();
 }
 
-class _ScannerPageState extends State<ScannerPage>
-    with SingleTickerProviderStateMixin {
+class _ScannerPageState extends State<ScannerPage> {
   bool _hasPermission = false;
   bool _isDetecting = false;
+  bool _isFlashOn = false;
 
   late final MobileScannerController _controller;
 
@@ -47,25 +46,26 @@ class _ScannerPageState extends State<ScannerPage>
     super.dispose();
   }
 
+  void _toggleFlash() {
+    _controller.toggleTorch();
+    setState(() => _isFlashOn = !_isFlashOn);
+  }
+
   @override
   Widget build(BuildContext context) {
     if (!_hasPermission) {
       return const Scaffold(
+        backgroundColor: Colors.black,
         body: Center(child: CircularProgressIndicator()),
       );
     }
 
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        title: const Text("Scan QR / Barcode"),
-        backgroundColor: Colors.black,
-        foregroundColor: Colors.white,
-      ),
       body: Stack(
-        fit: StackFit.expand,
         children: [
 
+          /// CAMERA
           MobileScanner(
             controller: _controller,
             onDetect: (capture) async {
@@ -84,48 +84,105 @@ class _ScannerPageState extends State<ScannerPage>
                 ),
               );
 
-              await Future.delayed(const Duration(milliseconds: 600));
+              await Future.delayed(const Duration(milliseconds: 500));
 
               Fluttertoast.showToast(msg: "Scan Successful");
-              Navigator.pop(context);
+              if (mounted) Navigator.pop(context);
             },
           ),
 
-
+          /// DARK OVERLAY
           Container(
             color: Colors.black.withOpacity(0.5),
           ),
 
-
+          /// SCAN FRAME
           Center(
             child: Container(
               width: 260,
               height: 260,
               decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: Colors.deepPurpleAccent,
+                  width: 3,
+                ),
               ),
             ),
           ),
 
-
-          ScanOverlay(isDetecting: _isDetecting),
-
-
+          /// TOP BAR
           Positioned(
-            bottom: 40,
-            left: 0,
-            right: 0,
-            child: Text(
-              "Align QR / Barcode inside the frame",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white.withOpacity(0.9),
-                fontSize: 16,
-              ),
+            top: 50,
+            left: 20,
+            right: 20,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _glassButton(
+                  icon: Icons.arrow_back,
+                  onTap: () => Navigator.pop(context),
+                ),
+                _glassButton(
+                  icon: _isFlashOn
+                      ? Icons.flash_on
+                      : Icons.flash_off,
+                  onTap: _toggleFlash,
+                ),
+              ],
+            ),
+          ),
+
+          /// BOTTOM TEXT
+          Positioned(
+            bottom: 60,
+            left: 20,
+            right: 20,
+            child: Column(
+              children: const [
+                Text(
+                  "Align QR / Barcode inside the frame",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  "Scanning will happen automatically",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 13,
+                  ),
+                ),
+              ],
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  /// Glass Effect Button
+  Widget _glassButton({
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.15),
+          shape: BoxShape.circle,
+        ),
+        child: Icon(
+          icon,
+          color: Colors.white,
+          size: 22,
+        ),
       ),
     );
   }

@@ -9,18 +9,30 @@ class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: const Color(0xFFF4F6FA),
       appBar: AppBar(
+        elevation: 0,
+        centerTitle: true,
         title: const Text(
           "Scan History",
           style: TextStyle(
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w600,
+            fontSize: 20,
             letterSpacing: 0.5,
           ),
         ),
-        elevation: 0,
-        backgroundColor: Colors.deepPurple,
-        centerTitle: true,
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xFF6A5AE0),
+                Color(0xFF8E7CFF),
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
       ),
       body: ValueListenableBuilder(
         valueListenable: Hive.box<ScanModel>('scans').listenable(),
@@ -29,12 +41,35 @@ class HistoryPage extends StatelessWidget {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Icon(Icons.history, size: 60, color: Colors.grey),
-                  SizedBox(height: 16),
-                  Text(
-                    "No scans available",
-                    style: TextStyle(fontSize: 18, color: Colors.grey),
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(25),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.deepPurple.withOpacity(0.1),
+                    ),
+                    child: const Icon(
+                      Icons.history_toggle_off_rounded,
+                      size: 70,
+                      color: Colors.deepPurple,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text(
+                    "No Scans Yet",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  const Text(
+                    "Your scanned results will appear here",
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey,
+                    ),
                   ),
                 ],
               ),
@@ -42,9 +77,12 @@ class HistoryPage extends StatelessWidget {
           }
 
           return ListView.separated(
-            padding: const EdgeInsets.all(12),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 20,
+            ),
             itemCount: box.length,
-            separatorBuilder: (_, __) => const SizedBox(height: 12),
+            separatorBuilder: (_, __) => const SizedBox(height: 16),
             itemBuilder: (_, index) {
               final scan = box.getAt(index)!;
 
@@ -52,21 +90,46 @@ class HistoryPage extends StatelessWidget {
                 key: Key(scan.key.toString()),
                 direction: DismissDirection.endToStart,
                 background: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   alignment: Alignment.centerRight,
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
                   decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.red.shade400,
+                    borderRadius: BorderRadius.circular(16),
                   ),
-                  child: const Icon(Icons.delete, color: Colors.white),
+                  child: const Icon(
+                    Icons.delete_outline,
+                    color: Colors.white,
+                    size: 28,
+                  ),
                 ),
                 onDismissed: (_) {
                   scan.delete();
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Scan deleted")),
+                    const SnackBar(
+                      content: Text("Scan deleted successfully"),
+                      behavior: SnackBarBehavior.floating,
+                    ),
                   );
                 },
-                child: ScanCard(scan: scan, index: index),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.05),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16),
+                    child: ScanCard(
+                      scan: scan,
+                      index: index,
+                    ),
+                  ),
+                ),
               );
             },
           );
