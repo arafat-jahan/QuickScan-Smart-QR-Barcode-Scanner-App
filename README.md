@@ -27,19 +27,29 @@
 - `intl` – Timestamp formatting
 
 
-## 📷 Screenshots
+## 📸 Screenshots
 
+### 🏠 Home Page
 ![Home Page](https://i.imgur.com/Q9INFBD.jpeg)
 *Home Page: Navigate to Scan or History*
 
-![Scanner Page](https://i.imgur.com/a870ac0e-c329-4dd1-b83a-db34f35467aa.jpeg)
+---
+
+### 📷 Scanner Page
+![Scanner Page](https://i.imgur.com/iI0kghC.jpeg)
 *Scanner Page: ScannerFrame overlay guides scanning*
 
-![History Page](https://i.imgur.com/291f91d5-f964-4fb0-aef3-4bd209139b09.jpeg)
-*History Page: Slidable actions, copy, share, delete*
+---
 
+### 🔒 Camera Permission
 ![Camera Permission](https://i.imgur.com/a3vrfRd.jpeg)
 *Camera Permission Prompt: Allows access before scanning*
+
+---
+
+### 📜 History Page
+![History Page](https://i.imgur.com/ImJHRbF.jpeg)
+*History Page: Slidable actions - Copy, Share, Delete*
 
 
 
