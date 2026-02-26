@@ -29,29 +29,14 @@
 
 ## 📸 Screenshots
 
-### 🏠 Home Page
+**🏠 Home Page** – *Navigate to Scan or History*  
 ![Home Page](https://i.imgur.com/Q9INFBD.jpeg)
-*Home Page: Navigate to Scan or History*
 
----
-
-### 📷 Scanner Page
+**📷 Scanner Page** – *ScannerFrame overlay guides scanning*  
 ![Scanner Page](https://i.imgur.com/iI0kghC.jpeg)
-*Scanner Page: ScannerFrame overlay guides scanning*
 
----
-
-### 🔒 Camera Permission
+**🔒 Camera Permission** – *Allows access before scanning*  
 ![Camera Permission](https://i.imgur.com/a3vrfRd.jpeg)
-*Camera Permission Prompt: Allows access before scanning*
 
----
-
-### 📜 History Page
+**📜 History Page** – *Slidable actions: Copy, Share, Delete*  
 ![History Page](https://i.imgur.com/ImJHRbF.jpeg)
-*History Page: Slidable actions - Copy, Share, Delete*
-
-
-
-
-
