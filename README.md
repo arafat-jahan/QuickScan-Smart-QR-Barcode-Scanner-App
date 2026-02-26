@@ -38,8 +38,9 @@
 ![History Page](https://i.imgur.com/291f91d5-f964-4fb0-aef3-4bd209139b09.jpeg)
 *History Page: Slidable actions, copy, share, delete*
 
-![Camera Permission](https://i.imgur.com/a870ac0e-c329-4dd1-b83a-db34f35467aa.jpeg)
+![Camera Permission](https://i.imgur.com/a3vrfRd.jpeg)
 *Camera Permission Prompt: Allows access before scanning*
+
 
 
 
